@@ -1,5 +1,78 @@
+@import url('../base.less');
+
 .main-sider-box {
-    background-color: black;
+    background-color: #000;
     height: 90vh;
     width: 245px;
+
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+
+    .logo-a {
+        // 这个要搭配父盒子为flex
+        margin: 10px auto 0px;
+    }
+
+    .fix-content,
+    .content {
+        padding: 3px;
+
+        li {
+            display: flex;
+            align-items: center;
+
+            font-size: 18px;
+            line-height: 18px;
+
+            border-radius: 10px;
+            padding: 10px;
+            padding-left: 30px;
+            margin-bottom: 10px;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            cursor: pointer;
+            #trs-bgc(#2c2c2c, #3c3c3c);
+
+            svg {
+
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .MuiDivider-root {
+        width: 80%;
+        border-bottom: 1px solid #444444;
+        margin: 0 auto;
+    }
+
+    .content {
+        margin-top: 10px;
+
+        .title {
+            color: #666666;
+            padding: 5px;
+            padding-left: 30px;
+        }
+
+        .unlogin-box {
+            text-align: center;
+            margin-top: 30%;
+
+            .MuiDivider-root {
+                border-bottom: 1px solid darkgrey;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+            }
+
+            .MuiButtonBase-root {
+                width: 100px;
+            }
+        }
+    }
 }
