@@ -3,6 +3,9 @@ import routes from "./routes";
 import { Suspense } from "react";
 import { Empty } from "antd";
 import { useSearchParams } from "react-router-dom";
+import '../index.less';
+
+
 
 /**
  * 统一渲染的组件：在这里可以做一些处理「例如：权限/登录态校验，传递路由信息的属性」
@@ -21,6 +24,8 @@ const Element = function Element(props) {
         [usp] = useSearchParams();
 
     return <Component navigate={navigate} location={location} params={params} usp={usp} />
+
+
 }
 
 /**
@@ -42,13 +47,15 @@ const createRoute = function createRoute(routes) {
 }
 
 const RouterView = function RouterView() {
-    return <Suspense fallback={
-        <Empty />
-    }>
-        <Routes>
-            {createRoute(routes)}
-        </Routes>
-    </Suspense>
+    return <div className="router-view">
+        <Suspense fallback={
+            <Empty />
+        }>
+            <Routes>
+                {createRoute(routes)}
+            </Routes>
+        </Suspense>
+    </div>
 }
 
 export default RouterView;
