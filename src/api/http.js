@@ -5,7 +5,9 @@ import { message } from 'antd';
 /* 核心方法 */
 const http = function http(config) {
     // initial config & validate
+    // 如果传入的 config 不是一个纯对象（plain object），则将其设为空对象 {}
     if (!_.isPlainObject(config)) config = {};
+    // 将默认配置与传入的配置对象合并，确保配置对象中存在必需的属性，同时可以使用用户提供的配置覆盖默认值。
     config = Object.assign({
         url: '',
         method: 'GET',
@@ -16,6 +18,8 @@ const http = function http(config) {
         responseType: 'json',
         signal: null
     }, config);
+    // 做一些基本的验证 
+    // 例如确保 url 是必需的，headers 是一个纯对象，params 是纯对象或 null。
     if (!config.url) throw new TypeError('url must be required');
     if (!_.isPlainObject(config.headers)) config.headers = {};
     if (config.params !== null && !_.isPlainObject(config.params)) config.params = null;
@@ -24,6 +28,8 @@ const http = function http(config) {
     if (params) {
         url += `${url.includes('?') ? '&' : '?'}${qs.stringify(params)}`;
     }
+    // 如果请求体 (body) 是一个纯对象，则将其转换为 URL 编码的形式，
+    // 并设置请求头的 Content - Type 为 application / x - www - form - urlencoded。
     if (_.isPlainObject(body)) {
         body = qs.stringify(body);
         headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -32,6 +38,7 @@ const http = function http(config) {
     // 处理Token
     let token = _.storage.get('tk'),
         safeList = ['/user_info', '/user_update', '/store', '/store_remove', '/store_list'];
+    // 根据 url 中的路径部分判断是否需要在请求头中添加令牌 (authorization)。
     if (token) {
         let reg = /\/api(\/[^?#]+)/,
             [, $1] = reg.exec(url) || [];
@@ -78,11 +85,8 @@ const http = function http(config) {
             });
         })
         .catch(reason => {
-            // Toast.show({
-            //     icon: 'fail',
-            //     content: '网络繁忙,请稍后再试!'
-            // });
-            message.error('网络繁忙,请稍后再试!')
+            message.error('网络繁忙,请稍后再试');
+
             return Promise.reject(reason);
         });
 };

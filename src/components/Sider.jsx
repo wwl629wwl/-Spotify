@@ -6,8 +6,8 @@ import MemoryIcon from '@mui/icons-material/Memory';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Divider from '@mui/material/Divider';
 import { Button } from "@mui/material";
-import api from "../api";
 import http from "../api/http";
+import api from '../api/index.js';
 
 
 const Sider = function Sider() {
@@ -15,14 +15,18 @@ const Sider = function Sider() {
     /** 点击登录的方法 */
     const clickLogin = async () => {
         try {
-            let res = await fetch('http://127.0.0.1:3000/user/account').then(data => {
+            let res = await fetch('/user/account').then(data => {
                 return data.json()
             }).then(data => {
                 return data;
             });
 
             console.log(res);
-            api.queryUserInfo();
+            let data = await http.get('/user/account');
+            let data1 = await api.queryUserInfo();
+            console.log(data1);
+            console.log(data);
+            // api.queryUserInfo();
         } catch (_) { }
     }
 

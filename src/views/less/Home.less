@@ -1,4 +1,70 @@
+@import url('../../base.less');
+
 .home-box {
-    width: 100%;
-    height: 100%;
+
+    h1 {
+        font-size: 28px;
+        font-weight: normal;
+        margin-bottom: 20px;
+    }
+
+    .new-song-category {
+        #setFlex(space-around);
+        margin-bottom: 30px;
+
+        li {
+            #setWH(15vw, 8vw);
+            border-radius: 30px;
+            position: relative;
+            margin-right: 20px;
+
+            cursor: pointer;
+            transition: all 250ms ease;
+
+            // responsive compatible function
+            @media screen and (max-width: 928px) {
+                #setWH(85px, 160px);
+
+                &:hover {
+                    width: 250px;
+                }
+            }
+
+            i {
+                font-size: larger;
+
+                position: absolute;
+                bottom: 1.5vw;
+                right: 2vw;
+            }
+
+
+        }
+
+        li:nth-child(1) {
+            background: rgba(186, 93, 7, 1);
+        }
+
+        li:nth-child(2) {
+            background: rgba(39, 133, 106, 1);
+        }
+
+        li:nth-child(3) {
+            background: rgba(30, 50, 100, 1);
+        }
+
+        li:nth-child(4) {
+            background: rgba(232, 17, 91, 1);
+        }
+
+        li:nth-child(5) {
+            background: rgba(141, 103, 171, 1);
+            margin-right: 0;
+        }
+
+        li:hover {
+            color: black;
+            background-color: @colorSuccess;
+        }
+    }
 }
