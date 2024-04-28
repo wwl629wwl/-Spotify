@@ -8,10 +8,11 @@ import Divider from '@mui/material/Divider';
 import { Button } from "@mui/material";
 import http from "../api/http";
 import api from '../api/index.js';
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const Sider = function Sider() {
-
+    const navigate = useNavigate();
     /** 点击登录的方法 */
     const clickLogin = async () => {
         try {
@@ -36,7 +37,7 @@ const Sider = function Sider() {
             <Image src={logo} preview={false} />
         </a>
         <ul className="fix-content">
-            <li><MemoryIcon />首页</li>
+            <li onClick={() => { navigate('/') }}><MemoryIcon />首页</li>
             <li><StarBorderIcon />我的收藏</li>
         </ul>
         <Divider style={{ width: '80%' }} />

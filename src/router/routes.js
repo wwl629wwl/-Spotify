@@ -34,6 +34,13 @@ const routes = [{
         title: 'Login'
     }
 }, {
+    path: '/playlist/:id',
+    name: 'playlist',
+    component: lazy(() => import('../views/PlayList.jsx')),
+    meta: {
+        title: '列表详情'
+    }
+}, {
     path: '*',
     name: '404',
     component: lazy(() => import('../views/404.jsx')),

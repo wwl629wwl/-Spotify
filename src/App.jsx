@@ -13,27 +13,36 @@ const layoutStyle = {
     flexDirection: 'row',
 }
 
+const insideStyle = {
+    width: 'calc(100% -245px)',
+    minHeight: 'calc(100vh - 10vh - 65px)',
+    overflow: 'auto',
+
+}
+
 const App = function App() {
     return <div className="App-box">
-        <Layout style={layoutStyle}>
-            {/* <Sider /> */}
-            {/* <Layout>
+        <HashRouter>
+            <Layout style={layoutStyle}>
+                {/* <Sider /> */}
+                {/* <Layout>
                 <HashRouter>
                     <Routerview/>
                 </HashRouter>
             </Layout> */}
-            <Sider />
+                <Sider />
 
-            <Layout>
-                <Header />
-                <HashRouter>
+                <Layout style={insideStyle}>
+
+                    <Header />
                     <Routerview />
-                </HashRouter>
+
+                </Layout>
+
             </Layout>
+        </HashRouter>
 
-        </Layout>
-
-    </div>
+    </div >
 }
 
 export default App;

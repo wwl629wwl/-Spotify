@@ -1,0 +1,63 @@
+@import url('../base.less');
+
+.song-content {
+    color: #b1b3b8;
+    padding: 12px 0;
+
+    margin-left: -2px;
+    #setFlex(space-between);
+    position: relative;
+
+    &:hover {
+        background-color: rgb(44, 44, 44);
+    }
+
+    .song-intro {
+        display: inline-flex;
+        align-items: center;
+
+        vertical-align: middle;
+
+        .index-num {
+            margin-right: 22px;
+            text-align: center;
+        }
+
+        .ant-image {
+            margin-left: 11px;
+        }
+
+        .song-details {
+            color: white;
+            margin-left: 22px;
+
+            #wordSeal(250px);
+
+            h4 {
+                font-size: 15px;
+            }
+
+            span {
+                color: @colorInfo;
+                font-size: small;
+
+                cursor: pointer;
+                // 添加hover的颜色
+                #trs-color(@colorSuccess, @colorInfo);
+            }
+        }
+    }
+
+    .album {
+        display: inline-block;
+        position: absolute;
+        left: 35vw;
+        cursor: pointer;
+        #trs-color(@colorSuccess, @colorInfo);
+        #wordSeal(230px);
+    }
+
+    .operate {
+        margin-left: 22vw;
+    }
+}
