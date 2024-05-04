@@ -11,9 +11,18 @@ const queryNewSongExpress = (type) => {
     })
 }
 
+/** 获取推荐歌单 不需要登录 */
+const queryRecommentList = () => http.get('/personalized');
+
+/** 根据输入的内容搜索 */
+
+const querySearchResult = (keywords) => {
+    
+}
 const api = {
     queryUserInfo,
-    queryNewSongExpress
+    queryNewSongExpress,
+    queryRecommentList
 }
 
 export default api;
