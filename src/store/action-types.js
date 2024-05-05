@@ -1,0 +1,1 @@
+export const SET_SEARCH_WORDS = 'SET_SEARCH_WORDS'

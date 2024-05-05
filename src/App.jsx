@@ -14,7 +14,7 @@ const layoutStyle = {
 }
 
 const insideStyle = {
-    width: 'calc(100% -245px)',
+    width: 'calc(100%)',
     minHeight: 'calc(100vh - 10vh - 65px)',
     overflow: 'auto',
 
@@ -30,7 +30,7 @@ const App = function App() {
                     <Routerview/>
                 </HashRouter>
             </Layout> */}
-                <Sider />
+                <Sider style={{ width: '245px' }} />
 
                 <Layout style={insideStyle}>
 

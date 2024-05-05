@@ -1,0 +1,30 @@
+.animate-enter-active,
+.animate-leave-active {
+    transition: all 600ms ease;
+}
+
+.animate-enter-from {
+    opacity: 0;
+    transform: translateX(-60px);
+}
+
+.animate-leave-to {
+    opacity: 1;
+    transform: translateX(60px);
+}
+
+.category-bar {
+    position: sticky;
+    margin-bottom: 10px;
+
+    .MuiButtonBase-root {
+        border-radius: 20px;
+        margin-right: 10px;
+        background-color: #373737;
+    }
+
+    .active {
+        background-color: #fff;
+        color: black;
+    }
+}

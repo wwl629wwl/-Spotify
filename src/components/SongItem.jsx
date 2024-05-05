@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 const SongItem = function SongItem(props) {
 
     const { album, duration, index, id, artists, albumName } = props;
+    console.log(props);
     // console.log(typeof popularity)
 
     return <div className="song-content">
@@ -16,7 +17,9 @@ const SongItem = function SongItem(props) {
             <Image src={album?.blurPicUrl} preview={false} width='50px' />
             <div className="song-details">
                 <h4>{album?.name}</h4>
-                <span>{artists[0]?.name}</span>
+                {artists.length > 0 && artists.map((item, index) => {
+                    return <span key={index}>{item.name}</span>
+                })}
             </div>
 
         </div>
