@@ -16,13 +16,22 @@ const queryRecommentList = () => http.get('/personalized');
 
 /** 根据输入的内容搜索 */
 
-const querySearchResult = (keywords) => {
-    
+const querySearchResult = (keywords, type = 1, current = 1, limit = 20) => {
+    const offset = (current - 1) * limit;
+    return http.get('/search', {
+        params: {
+            keywords,
+            type,
+            offset,
+            limit
+        }
+    })
 }
 const api = {
     queryUserInfo,
     queryNewSongExpress,
-    queryRecommentList
+    queryRecommentList,
+    querySearchResult
 }
 
 export default api;

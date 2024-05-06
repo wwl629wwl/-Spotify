@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.less";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconButton, Button } from "@mui/material";
-import { Input } from 'antd';
+import { AutoComplete, Input } from 'antd';
 import { useNavigate } from "react-router";
 import { connect } from 'react-redux';
 import action from '../store/action'
@@ -15,6 +15,7 @@ const Header = function Header(props) {
     /* 从props中结构出Redux中的方法 */
     const { setSearchWords } = props;
 
+
     const navigate = useNavigate();
 
     /* 定义所需的方法 */
@@ -23,10 +24,23 @@ const Header = function Header(props) {
         navigate(-1);
     }
 
-    const inputChangeValue = (event) => {
-        setSearchWords(event.target.value);
-        // console.log(event.target.value);
+    const inputChangeValue = (value) => {
+        // setSearchWords(event.target.value);
+
+        if (value === "" || value === undefined) {
+            console.log(111);
+            navigate('/', { replace: true });
+            return;
+        }
+        navigate(`/search`, {
+            replace: true,
+            state: {
+                keywords: value,
+                type: 1
+            }
+        })
     }
+
 
     return <div className="header-box fixed">
         <div className="left-btn">
@@ -37,7 +51,10 @@ const Header = function Header(props) {
                 <ChevronRightIcon />
             </IconButton>
             {/* <Search placeholder="搜索 歌曲 歌手 专辑" /> */}
-            <Input placeholder="搜索 歌曲 歌手 专辑" allowClear onChange={inputChangeValue} />
+            <AutoComplete placeholder="搜索 歌曲 歌手 专辑"
+
+                allowClear onChange={inputChangeValue}
+            />
         </div>
         <div className="right">
             <IconButton >

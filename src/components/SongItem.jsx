@@ -7,16 +7,18 @@ import PropTypes from 'prop-types';
 
 const SongItem = function SongItem(props) {
 
-    const { album, duration, index, id, artists, albumName } = props;
-    console.log(props);
+    const { album, duration, index, id, artists,
+        albumName, artistsItem, artistName, type, coverImgUrl } = props;
     // console.log(typeof popularity)
 
     return <div className="song-content">
         <div className="song-intro">
             <span className="index-num">{index + 1 >= 10 ? index + 1 : '0' + (index + 1)}</span>
-            <Image src={album?.blurPicUrl} preview={false} width='50px' />
+            {(album?.blurPicUrl && <Image src={album?.blurPicUrl} preview={false} width='50px' />) ||
+                (artistsItem?.picUrl && <Image src={artistsItem?.picUrl} preview={false} width='50px' />) ||
+                (coverImgUrl && <Image src={coverImgUrl} preview={false} width='50px' />)}
             <div className="song-details">
-                <h4>{album?.name}</h4>
+                <h4>{album?.name || artistName}</h4>
                 {artists.length > 0 && artists.map((item, index) => {
                     return <span key={index}>{item.name}</span>
                 })}
@@ -42,7 +44,11 @@ SongItem.defaultProps = {
     id: 0,
     index: 0,
     artists: [],
-    albumName: ''
+    albumName: '',
+    type: 1,
+    artistsItem: {},
+    artistName: "",
+    coverImgUrl: ""
 }
 
 SongItem.propTypes = {
@@ -51,7 +57,11 @@ SongItem.propTypes = {
     id: PropTypes.number,
     index: PropTypes.number,
     artists: PropTypes.array,
-    albumName: PropTypes.string
+    albumName: PropTypes.string,
+    type: PropTypes.number,
+    artistsItem: PropTypes.object,
+    artistName: PropTypes.string,
+    coverImgUrl: PropTypes.string
 }
 
 export default SongItem;

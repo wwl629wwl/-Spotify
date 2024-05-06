@@ -69,7 +69,7 @@ const Home = function Home(props) {
                             flex: '100%',
                         }}
                         sm={{
-                            flex: '60%',
+                            flex: '10%',
                         }}
                         md={{
                             flex: '20%',

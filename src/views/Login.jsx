@@ -41,6 +41,7 @@ const top100Films = [
         year: 1977,
     },
     { title: 'City of God', year: 2002 },
+    
     { title: 'Se7en', year: 1995 },
     { title: 'The Silence of the Lambs', year: 1991 },
     { title: "It's a Wonderful Life", year: 1946 },
