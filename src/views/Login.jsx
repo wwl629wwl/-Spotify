@@ -1,166 +1,141 @@
-import React from "react";
-import api from '../api/index.js';
-import CategoryBar from "../components/CategoryBar.jsx";
-import { Autocomplete, Stack, TextField } from "@mui/material";
-import { Input } from "antd";
+import AppleIcon from '@mui/icons-material/Apple';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import { Button, Divider } from '@mui/material';
+import { Form, Input, message } from 'antd';
+import React, { useEffect, useState } from "react";
+import './less/Login.less';
+// import { CheckBox } from '@mui/icons-material';
+import Checkbox from '@mui/material/Checkbox';
+import api from '../api';
+import _ from '../assets/utils.js';
+import { connect } from 'react-redux';
+import action from '../store/action';
 
-const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 },
-    { title: '12 Angry Men', year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: 'Pulp Fiction', year: 1994 },
-    {
-        title: 'The Lord of the Rings: The Return of the King',
-        year: 2003,
-    },
-    { title: 'The Good, the Bad and the Ugly', year: 1966 },
-    { title: 'Fight Club', year: 1999 },
-    {
-        title: 'The Lord of the Rings: The Fellowship of the Ring',
-        year: 2001,
-    },
-    {
-        title: 'Star Wars: Episode V - The Empire Strikes Back',
-        year: 1980,
-    },
-    { title: 'Forrest Gump', year: 1994 },
-    { title: 'Inception', year: 2010 },
-    {
-        title: 'The Lord of the Rings: The Two Towers',
-        year: 2002,
-    },
-    { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-    { title: 'Goodfellas', year: 1990 },
-    { title: 'The Matrix', year: 1999 },
-    { title: 'Seven Samurai', year: 1954 },
-    {
-        title: 'Star Wars: Episode IV - A New Hope',
-        year: 1977,
-    },
-    { title: 'City of God', year: 2002 },
-    
-    { title: 'Se7en', year: 1995 },
-    { title: 'The Silence of the Lambs', year: 1991 },
-    { title: "It's a Wonderful Life", year: 1946 },
-    { title: 'Life Is Beautiful', year: 1997 },
-    { title: 'The Usual Suspects', year: 1995 },
-    { title: 'Léon: The Professional', year: 1994 },
-    { title: 'Spirited Away', year: 2001 },
-    { title: 'Saving Private Ryan', year: 1998 },
-    { title: 'Once Upon a Time in the West', year: 1968 },
-    { title: 'American History X', year: 1998 },
-    { title: 'Interstellar', year: 2014 },
-    { title: 'Casablanca', year: 1942 },
-    { title: 'City Lights', year: 1931 },
-    { title: 'Psycho', year: 1960 },
-    { title: 'The Green Mile', year: 1999 },
-    { title: 'The Intouchables', year: 2011 },
-    { title: 'Modern Times', year: 1936 },
-    { title: 'Raiders of the Lost Ark', year: 1981 },
-    { title: 'Rear Window', year: 1954 },
-    { title: 'The Pianist', year: 2002 },
-    { title: 'The Departed', year: 2006 },
-    { title: 'Terminator 2: Judgment Day', year: 1991 },
-    { title: 'Back to the Future', year: 1985 },
-    { title: 'Whiplash', year: 2014 },
-    { title: 'Gladiator', year: 2000 },
-    { title: 'Memento', year: 2000 },
-    { title: 'The Prestige', year: 2006 },
-    { title: 'The Lion King', year: 1994 },
-    { title: 'Apocalypse Now', year: 1979 },
-    { title: 'Alien', year: 1979 },
-    { title: 'Sunset Boulevard', year: 1950 },
-    {
-        title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-        year: 1964,
-    },
-    { title: 'The Great Dictator', year: 1940 },
-    { title: 'Cinema Paradiso', year: 1988 },
-    { title: 'The Lives of Others', year: 2006 },
-    { title: 'Grave of the Fireflies', year: 1988 },
-    { title: 'Paths of Glory', year: 1957 },
-    { title: 'Django Unchained', year: 2012 },
-    { title: 'The Shining', year: 1980 },
-    { title: 'WALL·E', year: 2008 },
-    { title: 'American Beauty', year: 1999 },
-    { title: 'The Dark Knight Rises', year: 2012 },
-    { title: 'Princess Mononoke', year: 1997 },
-    { title: 'Aliens', year: 1986 },
-    { title: 'Oldboy', year: 2003 },
-    { title: 'Once Upon a Time in America', year: 1984 },
-    { title: 'Witness for the Prosecution', year: 1957 },
-    { title: 'Das Boot', year: 1981 },
-    { title: 'Citizen Kane', year: 1941 },
-    { title: 'North by Northwest', year: 1959 },
-    { title: 'Vertigo', year: 1958 },
-    {
-        title: 'Star Wars: Episode VI - Return of the Jedi',
-        year: 1983,
-    },
-    { title: 'Reservoir Dogs', year: 1992 },
-    { title: 'Braveheart', year: 1995 },
-    { title: 'M', year: 1931 },
-    { title: 'Requiem for a Dream', year: 2000 },
-    { title: 'Amélie', year: 2001 },
-    { title: 'A Clockwork Orange', year: 1971 },
-    { title: 'Like Stars on Earth', year: 2007 },
-    { title: 'Taxi Driver', year: 1976 },
-    { title: 'Lawrence of Arabia', year: 1962 },
-    { title: 'Double Indemnity', year: 1944 },
-    {
-        title: 'Eternal Sunshine of the Spotless Mind',
-        year: 2004,
-    },
-    { title: 'Amadeus', year: 1984 },
-    { title: 'To Kill a Mockingbird', year: 1962 },
-    { title: 'Toy Story 3', year: 2010 },
-    { title: 'Logan', year: 2017 },
-    { title: 'Full Metal Jacket', year: 1987 },
-    { title: 'Dangal', year: 2016 },
-    { title: 'The Sting', year: 1973 },
-    { title: '2001: A Space Odyssey', year: 1968 },
-    { title: "Singin' in the Rain", year: 1952 },
-    { title: 'Toy Story', year: 1995 },
-    { title: 'Bicycle Thieves', year: 1948 },
-    { title: 'The Kid', year: 1921 },
-    { title: 'Inglourious Basterds', year: 2009 },
-    { title: 'Snatch', year: 2000 },
-    { title: '3 Idiots', year: 2009 },
-    { title: 'Monty Python and the Holy Grail', year: 1975 },
-];
+const loginWays = [
+    { icon: <GoogleIcon style={{ color: '#882B23' }} />, text: '使用Google登录' },
+    { icon: <FacebookIcon style={{ color: '#1877F2' }} />, text: '使用Facebook登录' },
+    { icon: <AppleIcon />, text: '使用Apple登录' },
 
-const Login = function Login() {
+]
+const validate = {
+    phone(_, value) {
+        value = value.trim();
+        let reg = /^(?:(?:\+|00)86)?1\d{10}$/;
+        if (value.length === 0) return Promise.reject(new Error('手机号是必填项'));
+        // 正则校验
+        if (!reg.test(value)) return Promise.reject(new Error('手机号格式错误'));
+        return Promise.resolve();
+    },
+    code(_, value) {
+        value = value.trim();
+        let reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (value.length === 0) return Promise.reject(new Error('密码是必填项!'));
+        if (!reg.test(value)) return Promise.reject(new Error('密码格式有误!'));
+        return Promise.resolve();
+    }
+}
+const Login = function Login(props) {
 
+    const { navigate, navigateToLogin } = props;
 
+    /* 定义需要的状态 */
+    let [isChecked, setIsChecked] = useState(false);
+    const [formInfo] = Form.useForm();
+
+    const login = async () => {
+        console.log(11);
+        console.log(formInfo.getFieldsValue());
+        try {
+            await formInfo.validateFields();
+            let { phone, password } = formInfo.getFieldsValue();
+            let { code, token, cookie } = await api.login(phone, password);
+            console.log(code, token);
+            if (+code !== 200) {
+                message.error('登录失败');
+                formInfo.resetFields();
+                return;
+            }
+            /* 将token和cookie 保存到本地的localstorage中 */
+            _.storage.set('tk', token);
+            _.storage.set('cookie', cookie);
+            message.success('登录成功');
+            navigate('/', { replace: true });
+            navigateToLogin(false);
+        } catch (_) { }
+    }
+
+    const rememberMe = () => {
+
+    }
+
+    useEffect(() => {
+
+    }, [])
 
     return <div className="login-box">
-        {/* <CategoryBar /> */}
-        {/* <Stack spacing={2} sx={{ width: 300 }}>
-            <Autocomplete
-                options={[]}
-                renderInput={(params) => <TextField {...params} />}
-            />
-            <Autocomplete
-                freeSolo
-                id="free-solo-2-demo"
-                disableClearable
-                options={top100Films.map((option) => option.title)}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Search input"
-                        InputProps={{
-                            ...params.InputProps,
-                            type: 'search',
-                        }}
-                    />
-                )}
-            />
-        </Stack> */}
-    </div>
+        <div className="login-container">
+            <h1>登录到Spotify</h1>
+            <ul className="login-by-orther-way">
+                {loginWays.map((item, index) => {
+                    let { icon, text } = item;
+                    return <li className="way-item" key={index}>
+                        <Button>
+                            {icon}
+                            <span>{item.text.toLocaleLowerCase()}</span>
+                        </Button>
+                    </li>
+                })}
+            </ul>
+            <Divider />
+            <div className="login-form">
+                <Form
+                    layout='vertical'
+                    name="basic"
+                    form={formInfo}
+                >
+                    <Form.Item
+                        label="电子邮箱或手机号"
+                        style={{ content: 'none' }}
+                        name="phone"
+                        rules={[{
+                            required: true,
+                            message: '手机号错误',
+                            validator: validate.phone
+                        },]}
+                    >
+                        <Input placeholder='电子邮箱或手机号' />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="密码"
+                        name="password"
+                        rules={[{
+                            required: true,
+                            message: '密码错误',
+                            validator: validate.code
+                        },]}
+                    >
+                        <Input.Password placeholder='密码' />
+                    </Form.Item>
+
+                </Form>
+                <div className="remember-me">
+                    <Checkbox value={isChecked} checkd={true} onChange={(event) => {
+                        setIsChecked(event.target.checked);
+                    }} /> 记住我
+                    {/* <Checkbox {...label} defaultChecked /> */}
+                </div>
+                <div className='login-btn'>
+                    <Button onClick={login}>登录</Button>
+                </div>
+
+            </div>
+        </div>
+    </div >
 }
 
-export default Login;
+export default connect(
+    null,
+    { ...action.toLogin }
+)(Login);

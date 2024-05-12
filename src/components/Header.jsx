@@ -13,7 +13,7 @@ import action from '../store/action'
 const Header = function Header(props) {
 
     /* 从props中结构出Redux中的方法 */
-    const { setSearchWords } = props;
+    const { setSearchWords, navigateToLogin } = props;
 
 
     const navigate = useNavigate();
@@ -63,6 +63,7 @@ const Header = function Header(props) {
             <Button variant="contained"
                 onClick={() => {
                     navigate('/login', { replace: true });
+                    navigateToLogin(true);
                 }}
                 color="success" size="large" style={{ backgroundColor: '#67C23A', borderRadius: '25px' }}>登录</Button>
         </div>
@@ -71,5 +72,5 @@ const Header = function Header(props) {
 
 export default connect(
     null,
-    { ...action.search }
+    { ...action.search, ...action.toLogin }
 )(Header);

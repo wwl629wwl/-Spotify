@@ -1,10 +1,11 @@
+import { Layout } from 'antd';
 import React from 'react';
 import { HashRouter } from "react-router-dom";
-import Routerview from './router/index.js';
-import { Layout } from 'antd';
 import './App.less';
-import Sider from './components/Sider';
 import Header from './components/Header.jsx';
+import Sider from './components/Sider';
+import Routerview from './router/index.js';
+import { connect } from 'react-redux';
 
 const layoutStyle = {
     overflow: 'hidden',
@@ -20,7 +21,10 @@ const insideStyle = {
 
 }
 
-const App = function App() {
+const App = function App(props) {
+    const { toLogin } = props;
+    console.log(toLogin.toLogin);
+
     return <div className="App-box">
         <HashRouter>
             <Layout style={layoutStyle}>
@@ -34,7 +38,7 @@ const App = function App() {
 
                 <Layout style={insideStyle}>
 
-                    <Header />
+                    {!toLogin.toLogin && <Header />}
                     <Routerview />
 
                 </Layout>
@@ -45,4 +49,10 @@ const App = function App() {
     </div >
 }
 
-export default App;
+export default connect(
+    state => {
+        return {
+            toLogin: state.toLogin
+        }
+    }
+)(App);

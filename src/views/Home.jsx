@@ -1,9 +1,9 @@
+import { Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
-import './less/Home.less';
-import { useNavigate } from "react-router";
 import api from '../api/index.js';
 import PlayListCard from "../components/PlayListCard.jsx";
-import { Col, Row } from "antd";
+import './less/Home.less';
+import _ from '../assets/utils.js';
 
 
 /* 首页分类表点击跳转到相应的二级路由页面 */
@@ -44,6 +44,11 @@ const Home = function Home(props) {
             console.log(result);
             setRecResult(result);
         })()
+    }, [])
+
+    useEffect(() => {
+        let token = _.storage.get('tk');
+        console.log(token);
     }, [])
 
     return <div className="home-box container">

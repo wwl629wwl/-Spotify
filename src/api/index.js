@@ -15,7 +15,6 @@ const queryNewSongExpress = (type) => {
 const queryRecommentList = () => http.get('/personalized');
 
 /** 根据输入的内容搜索 */
-
 const querySearchResult = (keywords, type = 1, current = 1, limit = 20) => {
     const offset = (current - 1) * limit;
     return http.get('/search', {
@@ -27,11 +26,33 @@ const querySearchResult = (keywords, type = 1, current = 1, limit = 20) => {
         }
     })
 }
+/**
+ * 登录方法
+ * @param {*} phone 手机号
+ * @param {*} password 密码
+ */
+const login = (phone, password) => {
+    return http.get('/login/cellphone', {
+        params: {
+            phone,
+            password
+        }
+    })
+}
+
+/**
+ * 获取每日推荐的歌单需要登录
+ * @returns 
+ */
+const queryRecommendSongList = () => http.get('/recommend/resource');
+
 const api = {
     queryUserInfo,
     queryNewSongExpress,
     queryRecommentList,
-    querySearchResult
+    querySearchResult,
+    login,
+    queryRecommendSongList
 }
 
 export default api;
