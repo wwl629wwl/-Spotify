@@ -23,7 +23,6 @@ const insideStyle = {
 
 const App = function App(props) {
     const { toLogin } = props;
-    console.log(toLogin.toLogin);
 
     return <div className="App-box">
         <HashRouter>

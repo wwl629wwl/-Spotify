@@ -1,10 +1,11 @@
-import { Col, Row } from "antd";
+import { Col, message, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import api from '../api/index.js';
 import PlayListCard from "../components/PlayListCard.jsx";
 import './less/Home.less';
 import _ from '../assets/utils.js';
-
+import action from "../store/action/index.js";
+import { connect } from 'react-redux';
 
 /* 首页分类表点击跳转到相应的二级路由页面 */
 const categoryList = [{
@@ -26,8 +27,9 @@ const categoryList = [{
 
 const Home = function Home(props) {
 
+    /* 从props中结构出需要的函数 属性 包括：路由 Redux */
+    const { navigate, loginOrNot, base: { loginState }, baseQueryUserInfo } = props;
 
-    const { navigate } = props;
     /* 跳转到相应的二级路由页面 */
     const goPlayList = (id) => {
         console.log(id);
@@ -40,16 +42,36 @@ const Home = function Home(props) {
 
     useEffect(() => {
         (async () => {
-            let { result } = await api.queryRecommentList();
-            console.log(result);
-            setRecResult(result);
+            let cookie = _.storage.get('cookie');
+            if (cookie) {
+                let { recommend, code } = await api.queryDailySongList();
+                if (+code !== 200) {
+                    message.error('网络异常');
+                    return;
+                }
+                setRecResult(recommend);
+            } else {
+                let { result } = await api.queryRecommentList();
+                setRecResult(result);
+            }
         })()
     }, [])
 
+    /* 在进入home页面的时候 从localstorage中获取cookie判断是否登录 */
     useEffect(() => {
-        let token = _.storage.get('tk');
-        console.log(token);
+        loginOrNot();
+
     }, [])
+
+    useEffect(() => {
+        (async () => {
+            if (loginState) {
+                // 表明此时已经登录 那么去异步获取用户信息
+                // await baseQueryUserInfo();
+            }
+        })()
+    }, [loginState])
+
 
     return <div className="home-box container">
         <h1>新歌速递</h1>
@@ -94,4 +116,11 @@ const Home = function Home(props) {
     </div>
 }
 
-export default Home;
+export default connect(
+    state => {
+        return {
+            base: state.base
+        }
+    },
+    { ...action.base }
+)(Home);

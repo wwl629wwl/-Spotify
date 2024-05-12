@@ -121,7 +121,7 @@ const Login = function Login(props) {
 
                 </Form>
                 <div className="remember-me">
-                    <Checkbox value={isChecked} checkd={true} onChange={(event) => {
+                    <Checkbox value={isChecked} onChange={(event) => {
                         setIsChecked(event.target.checked);
                     }} /> 记住我
                     {/* <Checkbox {...label} defaultChecked /> */}

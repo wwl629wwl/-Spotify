@@ -41,6 +41,13 @@ const routes = [{
         title: '列表详情'
     }
 }, {
+    path: '/personal',
+    name: 'personal',
+    component: lazy(() => import('../views/Personal.jsx')),
+    meta: {
+        title: '个人中心'
+    }
+}, {
     path: '*',
     name: '404',
     component: lazy(() => import('../views/404.jsx')),

@@ -1,4 +1,9 @@
 import http from "./http";
+import _ from '../assets/utils';
+
+const token = _.storage.get('tk') ?? null;
+const cookie = _.storage.get('cookie') ?? null;
+
 
 /**获取用户信息 */
 const queryUserInfo = () => http.get('/user/account');
@@ -44,7 +49,8 @@ const login = (phone, password) => {
  * 获取每日推荐的歌单需要登录
  * @returns 
  */
-const queryRecommendSongList = () => http.get('/recommend/resource');
+const queryDailySongList = () => http.get(`/recommend/resource?${cookie}`);
+
 
 const api = {
     queryUserInfo,
@@ -52,7 +58,7 @@ const api = {
     queryRecommentList,
     querySearchResult,
     login,
-    queryRecommendSongList
+    queryDailySongList
 }
 
 export default api;

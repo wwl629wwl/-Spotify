@@ -1,2 +1,4 @@
 export const SET_SEARCH_WORDS = 'SET_SEARCH_WORDS';
 export const NAVIGATE_TO_LOGIN = 'NAVIGATE_TO_LOGIN';
+export const IS_LOGIN = 'IS_LOGIN';
+export const USER_PROFILE = 'USER_PROFILE';
