@@ -51,6 +51,25 @@ const login = (phone, password) => {
  */
 const queryDailySongList = () => http.get(`/recommend/resource?${cookie}`);
 
+/**
+ * 更新用户信息
+ * @param {*} nickname 用户名
+ */
+const updateUserInfo = (nickname) => {
+    return http.get('/user/update', {
+        params: {
+            nickname
+        }
+    })
+}
+
+const queryUserRecord = (uid) => {
+    return http.get('/user/record', {
+        params: {
+            uid,
+        }
+    })
+};
 
 const api = {
     queryUserInfo,
@@ -58,7 +77,9 @@ const api = {
     queryRecommentList,
     querySearchResult,
     login,
-    queryDailySongList
+    queryDailySongList,
+    updateUserInfo,
+    queryUserRecord
 }
 
 export default api;

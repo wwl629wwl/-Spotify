@@ -46,6 +46,28 @@
             }
         }
     }
+
+    .more {
+        width: 100px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .personal-play-list {
+        margin-top: 30px;
+
+        h1 {
+            font-size: 24px;
+            margin-left: 20px;
+        }
+
+        span {
+            margin-left: 20px;
+            color: #969696;
+        }
+    }
 }
 
 .modal-title {
@@ -53,10 +75,85 @@
     color: #fff;
 }
 
-.upload-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
-    background-color: rgba(50, 50, 50, 100);
+.info-container {
+
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+
+    .upload-img {
+        margin-top: 15px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
+        background-color: rgba(50, 50, 50, 100);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        transition: opacity 0.3ms ease-in-out;
+
+        svg {
+            font-size: 40px;
+            color: #7F7F7F;
+        }
+
+        .hover-actions {
+            position: absolute;
+            opacity: 0;
+            // width: 150px;
+            height: 150px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            color: #fff;
+
+            span {
+                font-size: 14px;
+                cursor: pointer;
+
+                &:hover {
+                    border-bottom: 1px solid #fff;
+                }
+            }
+
+            svg {
+                color: #fff;
+            }
+        }
+
+        &:hover {
+            .hover-actions {
+                opacity: 1;
+            }
+        }
+    }
+
+    .change-info {
+        margin-top: 30px;
+        margin-left: 40px;
+        display: flex;
+        flex-direction: column;
+
+        .MuiInputBase-root {
+            height: 40px;
+            background-color: #3E3D3D;
+        }
+
+        .MuiButtonBase-root {
+            margin-top: 10px;
+            align-self: flex-end;
+            width: 80px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: #FFFFFF;
+            color: #000;
+        }
+    }
+
+    // 3E3D3D
 }
