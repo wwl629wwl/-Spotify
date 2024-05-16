@@ -87,7 +87,7 @@ const Home = function Home(props) {
         <h1>为你推荐</h1>
         <Row>
             {recResult.length > 0 && recResult.map((item, index) => {
-                let { picUrl, name } = item;
+                let { picUrl, name, id } = item;
                 const key = `col-${index}`;
                 return (
                     <Col
@@ -108,7 +108,7 @@ const Home = function Home(props) {
                             flex: '20%',
                         }}
                     >
-                        <PlayListCard imgUrl={picUrl} title={name} />
+                        <PlayListCard imgUrl={picUrl} title={name} id={id} />
                     </Col>
                 );
             })}

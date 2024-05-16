@@ -63,6 +63,11 @@ const updateUserInfo = (nickname) => {
     })
 }
 
+/**
+ * 获取用户的播放记录
+ * @param {*} uid 用户id
+ * @returns 
+ */
 const queryUserRecord = (uid) => {
     return http.get('/user/record', {
         params: {
@@ -70,6 +75,27 @@ const queryUserRecord = (uid) => {
         }
     })
 };
+
+/**
+ * 获取用户收藏的歌单
+ * @param {*} uid 
+ * @returns 
+ */
+const queryUserPlayList = (uid) => {
+    return http.get('/user/playlist', {
+        params: {
+            uid
+        }
+    })
+}
+
+const queryListDetail = (id) => {
+    return http.get('/playlist/detail', {
+        params: {
+            id
+        }
+    })
+}
 
 const api = {
     queryUserInfo,
@@ -79,7 +105,9 @@ const api = {
     login,
     queryDailySongList,
     updateUserInfo,
-    queryUserRecord
+    queryUserRecord,
+    queryUserPlayList,
+    queryListDetail
 }
 
 export default api;

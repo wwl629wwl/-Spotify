@@ -3,12 +3,17 @@ import './PlayListCard.less';
 import PropTypes from 'prop-types';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router";
 
 const PlayListCard = function PlayListCart(props) {
 
-    let { imgUrl, title } = props;
+    let { imgUrl, title, id } = props;
 
-    return <div className="play-list-card text-center ">
+    const navigate = useNavigate();
+
+    return <div className="play-list-card text-center " onClick={() => {
+        navigate(`/listdetail/${id}`, { state: { id: id }, replace: true })
+    }}>
         <img src={imgUrl} alt="" />
         <p>{title}</p>
         <div className="play-btn">
@@ -21,12 +26,14 @@ const PlayListCard = function PlayListCart(props) {
 
 PlayListCard.defaultProps = {
     imgUrl: "",
-    title: ""
+    title: "",
+    id: 0
 };
 
 PlayListCard.propTypes = {
     imgUrl: PropTypes.string,
-    title: PropTypes.string
+    title: PropTypes.string,
+    id: PropTypes.number
 }
 
 export default PlayListCard;
