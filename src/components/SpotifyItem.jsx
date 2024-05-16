@@ -6,26 +6,29 @@ import { timeFormat } from "../api/function";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PropTypes from 'prop-types';
 
-const SpotifyItem = function SpotifyItem() {
+const SpotifyItem = function SpotifyItem(props) {
+
+    const { dt, name, ar, al, index, id } = props;
+
     return <div className="spotify-item">
         <div className="index">
-            <span>1</span>
+            <span>{index + 1}</span>
             <PlayArrowIcon />
         </div>
         <div className="album-image">
-            <Image src="https://p2.music.126.net/h_1u3v9vTCRWN_ZJlVdQkQ==/18523472395121303.jpg" preview={false} />
+            <Image src={al?.picUrl} preview={false} />
         </div>
         <div className="album-info">
             <span className="sing-name">
-                不用去猜
+                {name}
             </span>
             <span className="singer">
-                <a href="">Jony J</a>
+                <a href="">{ar[0]?.name}</a>
             </span>
         </div>
 
         <div className="album-name">
-            不用去猜
+            {al?.name}
         </div>
         <div className="time">
             <div className="add-to-list">
@@ -34,7 +37,7 @@ const SpotifyItem = function SpotifyItem() {
                 </Tooltip>
             </div>
             <div className="singer-time">
-                {timeFormat(213230)}
+                {timeFormat(dt)}
             </div>
             <div className="choose-more">
                 <div className="more-choose">
@@ -47,9 +50,31 @@ const SpotifyItem = function SpotifyItem() {
     </div>
 }
 
+/**
+ * 定义SpotifyItem
+ * @param index 索引
+ * @param name 专辑名
+ * @param ar 歌手
+ * @param dt 时长
+ * @param al 专辑名
+ * @param id id值
+ */
 SpotifyItem.defaultProps = {
     index: 1,
-    albumImgUrl: "https://p2.music.126.net/h_1u3v9vTCRWN_ZJlVdQkQ==/18523472395121303.jpg",
+    name: "",
+    ar: [],
+    dt: 0,
+    al: {},
+    id: 0,
+}
+
+SpotifyItem.propTypes = {
+    index: PropTypes.number,
+    name: PropTypes.string,
+    ar: PropTypes.array,
+    dt: PropTypes.number,
+    al: PropTypes.object,
+    id: PropTypes.number
 }
 
 export default SpotifyItem;

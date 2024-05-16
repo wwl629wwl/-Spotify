@@ -7,6 +7,7 @@ import { Image, message, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import './less/Personal.less';
+import SpotifyItem from '../components/SpotifyItem';
 
 const style = {
     position: 'absolute',
@@ -28,7 +29,8 @@ const Personal = function Personal() {
      * 定义需要的状态
      */
     let [userInfo, setUserInfo] = useState({}),
-        [username, setUsername] = useState('');
+        [username, setUsername] = useState(''),
+        [allData, setAllData] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -37,9 +39,15 @@ const Personal = function Personal() {
                 message.error('网络错误，请刷新再次请求');
                 return;
             }
+            let { allData } = await api.queryUserRecord(profile.userId);
             setUsername(profile?.nickname);
             setUserInfo(profile);
+            setAllData(allData);
         })()
+    }, [])
+
+    useEffect(() => {
+
     }, [])
 
     /* 定义需要的函数 */
@@ -113,7 +121,12 @@ const Personal = function Personal() {
             <h1>播放记录</h1>
             <span>仅自己可见</span>
         </div>
-
+        <div className="all-song-table">
+            {allData.length > 0 ? allData.map((item, index) => {
+                let { name, ar, dt, al, id } = item?.song
+                return <SpotifyItem key={index + id} index={index} name={name} ar={ar} al={al} dt={dt} />
+            }) : null}
+        </div>
     </div>
 }
 
