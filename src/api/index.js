@@ -89,10 +89,32 @@ const queryUserPlayList = (uid) => {
     })
 }
 
+/**
+ * 获取歌单的信息
+ * @param {*} id 歌单id
+ * @returns 
+ */
 const queryListDetail = (id) => {
     return http.get('/playlist/detail', {
         params: {
             id
+        }
+    })
+}
+
+/**
+ * 获取歌单中的所有歌曲
+ * @param {*} id 歌单id
+ * @param {*} offset 偏移值
+ * @returns 
+ */
+const queryAllSongs = (id, offset) => {
+    const limit = 20;
+    return http.get('/playlist/track/all', {
+        params: {
+            id,
+            limit,
+            offset
         }
     })
 }
@@ -107,7 +129,8 @@ const api = {
     updateUserInfo,
     queryUserRecord,
     queryUserPlayList,
-    queryListDetail
+    queryListDetail,
+    queryAllSongs
 }
 
 export default api;
