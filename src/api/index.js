@@ -119,6 +119,58 @@ const queryAllSongs = (id, offset) => {
     })
 }
 
+/**
+ * 获取歌手详情
+ * @param {*} id 歌手id
+ * @returns 
+ */
+const querySingerDetail = (id) => {
+    return http.get('/artists', {
+        params: {
+            id
+        }
+    })
+}
+
+/**
+ * 获取歌手专辑
+ * @param {*} id 歌手id
+ * @returns 
+ */
+const querySingerAlbum = (id) => {
+    return http.get('/artist/album', {
+        params: {
+            id
+        }
+    })
+}
+
+/**
+ * 获取歌手MV
+ * @param {*} id 歌手id
+ * @returns 
+ */
+const querySingerMV = (id) => {
+    return http.get('/artist/mv', {
+        params: {
+            id
+        }
+    })
+}
+
+/**
+ * 获取相似歌手
+ * @param {*} id 
+ * @returns 
+ */
+const querySimilarSinger = (id) => {
+    return http.get('/simi/artist', {
+        params: {
+            id
+        }
+    })
+}
+
 const api = {
     queryUserInfo,
     queryNewSongExpress,
@@ -130,7 +182,11 @@ const api = {
     queryUserRecord,
     queryUserPlayList,
     queryListDetail,
-    queryAllSongs
+    queryAllSongs,
+    querySingerDetail,
+    querySingerAlbum,
+    querySingerMV,
+    querySimilarSinger
 }
 
 export default api;

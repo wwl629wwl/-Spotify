@@ -1,0 +1,176 @@
+.singer-box {
+    margin: -20px -30px;
+
+    .backgroud-image {
+        width: 100%;
+        height: 300px;
+        // 让背景图片平铺整个盒子
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .singer-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            height: 100%;
+            margin-left: 30px;
+
+            .is-certification {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .singer-name {
+                font-size: 40px;
+                margin-bottom: 10px;
+            }
+
+            .brief-desc {
+                margin-bottom: 20px;
+                color: #2e2e2e;
+            }
+        }
+    }
+
+    .play-follow {
+        height: 50px;
+        display: flex;
+        margin-top: 20px;
+        margin-left: 10px;
+        align-items: center;
+
+        .play-btn {
+            height: 50px;
+            width: 50px;
+
+            .MuiButtonBase-root {
+                min-width: 50px;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: 25px;
+                background-color: #1CD760;
+
+                svg {
+                    color: #000;
+                }
+            }
+        }
+
+        .follow {
+            margin-left: 10px;
+            background-color: #212121;
+            border: 1px solid #727272;
+            border-radius: 20px;
+            color: #fff;
+            transition: scale 0.5s;
+
+            &:hover {
+                scale: 1.02;
+                border: 1px solid #fff;
+            }
+        }
+
+        .more {
+            font-size: 20px;
+            height: 100%;
+            line-height: 40px;
+            margin-left: 10px;
+            // padding-bottom: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    }
+
+    .hot-songs {
+        margin-left: 10px;
+        margin-top: 30px;
+
+        h1 {
+            margin-left: 30px;
+            font-size: 28px;
+        }
+
+        .song-lists {
+            overflow: hidden;
+        }
+
+
+        .MuiButtonBase-root {
+            color: #B8B7B7;
+            background-color: #121212;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    .album-lists {
+        margin-left: 10px;
+        margin-top: 20px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                margin-left: 30px;
+                font-size: 28px;
+            }
+
+            span {
+                margin-right: 20px;
+                color: #B3B3B3;
+            }
+        }
+    }
+
+    .album-mv {
+        margin-left: 10px;
+        margin-top: 20px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                margin-left: 30px;
+                font-size: 28px;
+            }
+
+            span {
+                margin-right: 20px;
+                color: #B3B3B3;
+            }
+        }
+    }
+
+    .fans-like {
+        margin-left: 10px;
+        margin-top: 20px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                margin-left: 30px;
+                font-size: 28px;
+            }
+
+            span {
+                margin-right: 20px;
+                color: #B3B3B3;
+            }
+        }
+    }
+
+}

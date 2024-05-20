@@ -5,6 +5,7 @@ import { Image, Tooltip } from "antd";
 import { timeFormat } from "../api/function";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PropTypes from 'prop-types';
+import { NavLink } from "react-router-dom";
 
 const SpotifyItem = function SpotifyItem(props) {
 
@@ -26,7 +27,7 @@ const SpotifyItem = function SpotifyItem(props) {
                 <span className="singer">
                     {ar.map(item => {
                         let { id, name } = item;
-                        return <a href="" key={id}>{name}</a>
+                        return <NavLink to={`/singer/${id}`} style={{ marginRight: '4px' }} key={id}>{name}</NavLink>
                     })}
                     {/* <a href="">{ar.map(item => item.name)}</a> */}
                 </span>

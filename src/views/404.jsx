@@ -7,6 +7,7 @@ const NotFound = function NotFound() {
 
     return <div className="not-found">
         <SiderItem />
+        
     </div>
 }
 
