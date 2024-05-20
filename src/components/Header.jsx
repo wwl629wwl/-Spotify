@@ -47,7 +47,10 @@ const Header = function Header(props) {
             <IconButton onClick={backBtn}>
                 <ChevronLeftIcon />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={() => {
+                navigate(1);
+                console.log(111)
+            }}>
                 <ChevronRightIcon />
             </IconButton>
             {/* <Search placeholder="搜索 歌曲 歌手 专辑" /> */}

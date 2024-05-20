@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SpotifyItem from "../components/SpotifyItem";
 import PlayListCard from "../components/PlayListCard";
+import AvatarCard from "../components/AvatarCard";
 
 const Singer = function Singer(props) {
 
@@ -22,7 +23,8 @@ const Singer = function Singer(props) {
         [hotSongs, setHotSongs] = useState([]),
         [more, setMore] = useState(false),
         [albums, setAlbums] = useState([]),
-        [mvs, setMvs] = useState([]);
+        [mvs, setMvs] = useState([]),
+        [simiArtists, setSimiArtists] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -30,10 +32,12 @@ const Singer = function Singer(props) {
                 let { hotSongs, artist } = await api.querySingerDetail(params.id);
                 let { hotAlbums } = await api.querySingerAlbum(params.id);
                 let { mvs } = await api.querySingerMV(params.id);
+                let { artists } = await api.querySimilarSinger(params.id);
                 setSingerInfo(artist);
                 setHotSongs(hotSongs.slice(0, 10));
                 setAlbums(hotAlbums.slice(0, 5));
                 setMvs(mvs.slice(0, 5));
+                setSimiArtists(artists.slice(0, 5));
             } catch (_) { }
         })()
     }, []);
@@ -142,9 +146,34 @@ const Singer = function Singer(props) {
         </div> : null}
         <div className="fans-like">
             <div className="header">
-                <h1>粉丝喜欢</h1>
+                <h1>粉丝也喜欢</h1>
                 <span>查看全部</span>
             </div>
+            <Row>
+                {simiArtists.length > 0 ? simiArtists.map((item, index) => {
+                    let { picUrl, name, id } = item;
+                    const key = `col+${index}`;
+                    return <Col key={key}
+                        xs={{
+                            flex: '100%',
+                        }}
+                        sm={{
+                            flex: '30%',
+                        }}
+                        md={{
+                            flex: '30%',
+                        }}
+                        lg={{
+                            flex: '20%',
+                        }}
+                        xl={{
+                            flex: '20%',
+                        }}
+                    >
+                        <AvatarCard imgUrl={picUrl} title={name} id={id} />
+                    </Col>
+                }) : null}
+            </Row>
         </div>
     </div>
 }
