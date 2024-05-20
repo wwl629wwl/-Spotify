@@ -22,9 +22,15 @@ const SpotifyItem = function SpotifyItem(props) {
             <span className="sing-name">
                 {name}
             </span>
-            <span className="singer">
-                <a href="">{ar[0]?.name}</a>
-            </span>
+            <div className="singer-list">
+                <span className="singer">
+                    {ar.map(item => {
+                        let { id, name } = item;
+                        return <a href="" key={id}>{name}</a>
+                    })}
+                    {/* <a href="">{ar.map(item => item.name)}</a> */}
+                </span>
+            </div>
         </div>
 
         <div className="album-name">

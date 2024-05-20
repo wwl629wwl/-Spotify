@@ -55,6 +55,13 @@ const routes = [{
         title: '歌单详情'
     }
 }, {
+    path: '/singer/:id',
+    name: 'singer',
+    component: lazy(() => import('../views/Singer.jsx')),
+    meta: {
+        title: '歌手详情'
+    }
+}, {
     path: '*',
     name: '404',
     component: lazy(() => import('../views/404.jsx')),

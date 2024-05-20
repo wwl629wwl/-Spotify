@@ -72,8 +72,8 @@ const ListDetail = function ListDetail(props) {
         </div>}
         <div className="song-lists">
             {songList.length > 0 ? songList.map((item, index) => {
-                let { id, ar, al, dt } = item;
-                return <SpotifyItem key={index} index={index} id={id} ar={ar} dt={dt} al={al} />
+                let { id, ar, al, dt, name } = item;
+                return <SpotifyItem key={index} index={index} id={id} ar={ar} dt={dt} al={al} name={name} />
             }) : null}
         </div>
         <div className="load-more-box" ref={loadMore}
