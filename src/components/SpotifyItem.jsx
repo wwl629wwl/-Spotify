@@ -11,7 +11,7 @@ const SpotifyItem = function SpotifyItem(props) {
 
     const { dt, name, ar, al, index, id } = props;
 
-    return <div className="spotify-item">
+    return <div className="spotify-item" >
         <div className="index">
             <span>{index + 1}</span>
             <PlayArrowIcon />

@@ -1,5 +1,9 @@
 @import url('./assets/reset.min.css');
 
+#root {
+    height: 100vh;
+}
+
 /* 根据路由渲染出来页面的公共样式 */
 .router-view {
     width: calc(100%);
@@ -8,7 +12,8 @@
     background-image: linear-gradient(#202020, #141414);
     min-height: calc(100vh - 10vh - 65px);
     padding: 20px 30px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .container {

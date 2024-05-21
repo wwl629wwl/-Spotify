@@ -171,6 +171,19 @@ const querySimilarSinger = (id) => {
     })
 }
 
+/**
+ * 获取歌曲的详情
+ * @param {*} ids 
+ * @returns 
+ */
+const querySongDetails = (ids) => {
+    return http.get('/song/detail', {
+        params: {
+            ids
+        }
+    })
+}
+
 const api = {
     queryUserInfo,
     queryNewSongExpress,
@@ -186,7 +199,8 @@ const api = {
     querySingerDetail,
     querySingerAlbum,
     querySingerMV,
-    querySimilarSinger
+    querySimilarSinger,
+    querySongDetails
 }
 
 export default api;

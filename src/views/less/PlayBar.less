@@ -1,0 +1,122 @@
+.play-bar-box {
+    background-color: #000;
+    height: calc(10%);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .pic-singer {
+        width: 25%;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        // justify-content: center;
+        align-items: center;
+
+        img {
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .singer-name {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+
+
+            span {
+                margin-left: 5px;
+                width: 150px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                overflow: hidden;
+            }
+
+            .name {
+                cursor: pointer;
+                margin-bottom: 3px;
+                font-size: 15px;
+
+
+            }
+
+            .artists {}
+
+
+        }
+    }
+
+    .play-actions {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .action-btns {
+            margin-top: 5px;
+
+            .MuiButtonBase-root {
+                color: #B3B2B2;
+            }
+
+            .start-btn {
+                width: 40px;
+                height: 40px;
+                transition: scale 100ms ease;
+                color: #fff;
+
+                svg {
+                    font-size: 40px;
+                }
+
+                &:hover {
+                    scale: 1.1;
+                }
+            }
+
+
+        }
+
+
+
+        .progress-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+
+            .MuiBox-root {
+                .MuiLinearProgress-root {
+                    background-color: #4B4A4A;
+
+                    .MuiLinearProgress-bar {
+                        background-color: #fff;
+
+                        &:hover {
+                            background-color: #1CD760;
+                        }
+                    }
+                }
+            }
+
+            span {
+                color: #fff;
+            }
+        }
+    }
+
+    .another-actions {
+        width: 25%;
+
+
+
+
+    }
+}

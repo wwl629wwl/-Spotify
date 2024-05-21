@@ -6,6 +6,7 @@ import Header from './components/Header.jsx';
 import Sider from './components/Sider';
 import Routerview from './router/index.js';
 import { connect } from 'react-redux';
+import PlayBar from './views/PlayBar.jsx';
 
 const layoutStyle = {
     overflow: 'hidden',
@@ -24,8 +25,8 @@ const insideStyle = {
 const App = function App(props) {
     const { toLogin } = props;
 
-    return <div className="App-box">
-        <HashRouter>
+    return <HashRouter>
+        <div className="App-box">
             <Layout style={layoutStyle}>
                 {/* <Sider /> */}
                 {/* <Layout>
@@ -43,9 +44,11 @@ const App = function App(props) {
                 </Layout>
 
             </Layout>
-        </HashRouter>
+        </div >
+        <PlayBar />
+    </HashRouter>
 
-    </div >
+
 }
 
 export default connect(

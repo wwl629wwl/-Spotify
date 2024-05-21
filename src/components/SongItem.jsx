@@ -11,7 +11,7 @@ const SongItem = function SongItem(props) {
         albumName, artistsItem, artistName, type, coverImgUrl } = props;
     // console.log(typeof popularity)
 
-    return <div className="song-content">
+    return <div className="song-content" >
         <div className="song-intro">
             <span className="index-num">{index + 1 >= 10 ? index + 1 : '0' + (index + 1)}</span>
             {(album?.blurPicUrl && <Image src={album?.blurPicUrl} preview={false} width='50px' />) ||
